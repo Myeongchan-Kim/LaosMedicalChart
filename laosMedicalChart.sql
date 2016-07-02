@@ -1,0 +1,64 @@
+-- MySQL Workbench Synchronization
+-- Generated: 2016-07-03 00:17
+-- Model: New Model
+-- Version: 1.0
+-- Project: Name of the project
+-- Author: kmc55
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+CREATE SCHEMA IF NOT EXISTS `laos` DEFAULT CHARACTER SET utf8 ;
+
+CREATE TABLE IF NOT EXISTS `laos`.`patient` (
+  `pid` INT(11) NOT NULL AUTO_INCREMENT,
+  `pname` VARCHAR(50) NOT NULL,
+  `birth` DATE NOT NULL,
+  `sex` CHAR(1) NOT NULL,
+  `phone` VARCHAR(15) NULL DEFAULT NULL,
+  `address` VARCHAR(255) NULL DEFAULT NULL,
+  `systolicBP` INT(11) NULL DEFAULT NULL,
+  `diastolicBP` INT(11) NULL DEFAULT NULL,
+  `pulse` INT(11) NULL DEFAULT NULL,
+  `temperature` FLOAT(11) NULL DEFAULT NULL,
+  `bst` INT(11) NULL DEFAULT NULL,
+  `height` FLOAT(11) NULL DEFAULT NULL,
+  `weight` FLOAT(11) NULL DEFAULT NULL,
+  `spo2` FLOAT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`pid`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `laos`.`chart` (
+  `cid` INT(11) NOT NULL AUTO_INCREMENT,
+  `pid` INT(11) NOT NULL,
+  `medical_chart` TEXT NULL DEFAULT NULL,
+  `prescription` TEXT NULL DEFAULT NULL,
+  `oriental_chart` TEXT NULL DEFAULT NULL,
+  `oriental_prescription` TEXT NULL DEFAULT NULL,
+  `lab` TEXT NULL DEFAULT NULL,
+  `memo` TEXT NULL DEFAULT NULL,
+  `createTime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`cid`, `pid`),
+  INDEX `fk_chart_patient_idx` (`pid` ASC),
+  CONSTRAINT `fk_chart_patient`
+    FOREIGN KEY (`pid`)
+    REFERENCES `laos`.`patient` (`pid`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COMMENT = '	';
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+-- ------------------------------------------
+
+USE LAOS;
+SHOW TABLES;
+
