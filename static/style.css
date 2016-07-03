@@ -4,3 +4,25 @@
   font-weight:bold;
   list-style:none;
 }
+
+.main_wrapper{
+  margin: 0 auto;
+  width: 440px;
+  height : 220px;
+  background: #000;
+}
+
+.main_button{
+  float:left;
+  margin:10px;
+  width:200px;
+  height:200px;
+  background: #999;
+}
+
+.reciept_button{
+  background: #987;
+}
+.medical_button{
+  background: #789;
+}
