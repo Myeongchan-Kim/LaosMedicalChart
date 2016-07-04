@@ -10,9 +10,20 @@
 <header>
 </header>
 <main>
-    <div class="main_container">
-    {{{body}}}
-    </div>
+  <div class="patient_list">
+    <button>환자목록</button>
+    <ul>
+      {{#each patient_list}}
+      <li id="p{{pid}}"><a href="/modify/patient/{{pid}}">
+        <span>{{pname}}</span><span>{{birth}}</span><span>{{address}}</span>
+      </a></li>
+      {{else}}
+      {{/each}}
+    </ul>
+  </div>
+  <div class="main_container">
+  {{{body}}}
+  </div>
 </main>
 <footer>All copyrights reserved by Paul Kim &copy; 2016 </footer>
 </body>

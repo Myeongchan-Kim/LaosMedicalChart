@@ -1,0 +1,31 @@
+<!-- add new patient -->
+<div>
+  <form name="newPatientInfo" method="POST" action="">
+    <ul><h3>Basic information</h3>
+      <li><span>Patient name : <input type="text" name="pname" required/></span></li>
+      <li><span>Birth :<input type="date" name="birth" required /></span></li>
+      <li><span>Sex :
+          <input type="radio" name="sex" value="M" required/>male
+          <input type="radio" name="sex" value="F" required/>female
+      </span></li>
+      <li><span>phone : <input type="text" name="phone" /></span></li>
+      <li><span>address : <input type="text" name="address" /></span></li>
+      <li class="body_size"><h4>body size</h4>
+        <ul>
+          <li><span>height: <input type="number" name="height" /></span></li>
+          <li><span>weight: <input type="number" name="weight" /></span></li>
+        </ul>
+      </li>
+      <li class="vital_sign"><h4>vital sign</h4>
+        <ul>
+          <li><span>sBP : <input type="number" name="sBP" /></span></li>
+          <li><span>dBP : <input type="number" name="dBP" /></span></li>
+          <li><span>pulse:<input type="number" name="pulse" /></span></li>
+          <li><span>BST:<input type="number" name="bst" /></span></li>
+          <li><span>SpO2:<input type="number" name="spo2" /></span></li>
+        </ul>
+      </li>
+      <input type="submit" value="Create" />
+    </ul>
+  </form>
+</div>
