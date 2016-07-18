@@ -4,9 +4,35 @@ var handlebars = require('express-handlebars')
 .create({
   defaultLayout:'main',
   helpers: {
-      'range': require('handlebars-helper-range')
-    }
+      'range': require('handlebars-helper-range'),
+      'ifCond' : function (v1, operator, v2, options) {
+        switch (operator) {
+            case '==':
+                return (v1 == v2) ? options.fn(this) : options.inverse(this);
+            case '===':
+                return (v1 === v2) ? options.fn(this) : options.inverse(this);
+            case '<':
+                return (v1 < v2) ? options.fn(this) : options.inverse(this);
+            case '<=':
+                return (v1 <= v2) ? options.fn(this) : options.inverse(this);
+            case '>':
+                return (v1 > v2) ? options.fn(this) : options.inverse(this);
+            case '>=':
+                return (v1 >= v2) ? options.fn(this) : options.inverse(this);
+            case '&&':
+                return (v1 && v2) ? options.fn(this) : options.inverse(this);
+            case '||':
+                return (v1 || v2) ? options.fn(this) : options.inverse(this);
+            default:
+                return options.inverse(this);
+        } // switch
+      }//ifCond
+    }// helpers
 }); //템플릿
+
+var Handlebars = require("handlebars");
+
+
 var bodyparser = require('body-parser').urlencoded({extended:true}); //form 평문전달
 
 app.use(bodyparser);
@@ -18,7 +44,7 @@ app.set('view engine', 'handlebars');
 app.set('port', process.env.PORT || 3000);
 
 app.get('/', function(req, res){
-  res.render('index');
+  res.render('index', {mode:"patient"});
 });
 
 var showPage =  require('./routes/show');

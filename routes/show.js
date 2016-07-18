@@ -16,7 +16,7 @@ router.route('/').get(function (req, res){
 });
 
 router.route('/patient').get(function(req, res){
-  var query = "SELECT pname, DATE_FORMAT(birth, '%Y-%m-%d') as birth , sex, address FROM patient ORDER BY reciept_datetime DESC;";
+  var query = "SELECT pid, pname, DATE_FORMAT(birth, '%Y-%m-%d') as birth , sex, address FROM patient ORDER BY reciept_datetime DESC;";
   pool.query(query, function(err, rows, fields) {
     if (err) throw err;
     res.type('text/plain');

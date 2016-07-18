@@ -31,8 +31,12 @@
       </button>
       <nav class="mdl-navigation">
         <ul class="patient_list">
-        <li><a class="mdl-navigation__link smallAList" href="">환자1</a></li>
-        <li><a class="mdl-navigation__link smallAList" href="">환자2</a></li>
+        <li><!-- info mode -->
+          <a class="mdl-navigation__link smallAList" href="/modify/{{mode}}/id">환자1</a>
+        </li>
+        <li><!-- chart mode -->
+          <a class="mdl-navigation__link smallAList" href="/modify/{{mode}}/id">환자2</a>
+        </li>
         </ul>
       </nav>
     </div>
@@ -41,5 +45,11 @@
     </main>
   </div>
 <footer>All copyrights reserved by Paul Kim &copy; 2016 </footer>
+<script>
+var mode ="" + "{{mode}}";
+if( mode.trim() === ""){
+  mode = "patient"
+}
+</script>
 </body>
 </html>

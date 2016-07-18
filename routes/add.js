@@ -68,9 +68,9 @@ router.route('/patient').post(function(req, res){
   console.log(query);
   pool.query(query, function(err, rows, fields) {
     if (err) {
-      res.redirect({patient_info :req.body , err: err}, '/add/patient');
+      res.render('/add/patient', {patient_info :req.body , err: err});
     }else{
-      res.redirect('/add/patient');
+      res.redirect('/');
     }
   });
 });

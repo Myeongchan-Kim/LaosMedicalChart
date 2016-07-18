@@ -8,9 +8,12 @@ values(
 120,187, 90.0 , 100
 );
 
+UPDATE patient SET pname = '김공실'
+WHERE pid = 1;
 
 INSERT INTO patient (pname, birth, sex , phone, address, systolicBP, diastolicBP, pulse, height, weight) VALUES  ( '가나다', '1985-11-12', 'M' , '0100100100', '경기도의왕시내손1동', 120, 80, 60, 180, 80);
 -- ------------------------
 desc patient;
 
 select * from patient order by reciept_datetime desc;
+SELECT pid, pname, DATE_FORMAT(birth, '%Y-%m-%d') as birth , sex, address, sBP, dBP, pulse, bst, spo2, height, weight FROM patient WHERE pid = 1;

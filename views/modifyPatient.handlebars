@@ -1,0 +1,102 @@
+<!-- add new patient -->
+<div>
+  <form name="modifyPatientInfo" method="POST" action="" id="modifyPatientInfo">
+    <ul><h3>Basic information</h3>
+      <li><span>Patient name* : </span>
+        <input type="hidden" name="pid" value="{{data.pid}}">
+        <div class="mdl-textfield mdl-js-textfield patientInfo_inputBox">
+          <input class="mdl-textfield__input" type="text" id="name_input" name="pname" value="{{data.pname}}" required>
+          <label class="mdl-textfield__label" for="name_input">Name</label>
+        </div>
+      </li>
+      <li><span>Birth* :</span>
+        <div class="mdl-textfield mdl-js-textfield patientInfo_inputBox">
+          <input class="mdl-textfield__input" type="date" id="birth_input" name="birth"  value="{{data.birth}}" required>
+          <label class="mdl-textfield__label" for="birth_input"></label>
+        </div>
+      </li>
+      <li>
+        <span> Sex* : </span>
+        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="male_radio">
+          <input type="radio" id="male_radio" class="mdl-radio__button" name="sex" value="M"
+          {{#ifCond data.sex '==' "M"}}
+           checked
+          {{/ifCond}}
+          required>
+          <span class="mdl-radio__label">MALE</span>
+        </label>
+        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="female_radio">
+          <input type="radio" id="female_radio" class="mdl-radio__button" name="sex" value="F"
+          {{#ifCond data.sex '==' "F"}}
+            checked
+          {{/ifCond}}
+           required>
+          <span class="mdl-radio__label">FEMALE</span>
+        </label>
+      </li>
+      <li><span>phone :</span>
+        <div class="mdl-textfield mdl-js-textfield">
+          <input class="mdl-textfield__input" type="text" id="phone_input" name="phone" value="{{data.phone}}">
+          <label class="mdl-textfield__label" for="phone_input">phone number</label>
+        </div>
+      </li>
+      <li><span>address :</span>
+        <div class="mdl-textfield mdl-js-textfield">
+          <input class="mdl-textfield__input" type="text" id="address_input" name="address"  value="{{data.address}}">
+          <label class="mdl-textfield__label" for="address_input">address</label>
+        </div>
+      </li><!--/basic info-->
+      <li class="vital_sign"><h4>vital sign</h4>
+        <ul>
+          <li><span>BP :</span>
+            <div class="mdl-textfield mdl-js-textfield">
+              <input class="mdl-textfield__input" type="text" id="sBP_input" name="sBP" value="{{data.systolicBP}}">
+              <label class="mdl-textfield__label" for="sBP_input">systolic mmHg</label>
+            </div>/
+            <div class="mdl-textfield mdl-js-textfield">
+              <input class="mdl-textfield__input" type="text" id="dBP_input" name="dBP" value="{{data.diastolicBP}}">
+              <label class="mdl-textfield__label" for="dBP_input">diastolic mmHg</label>
+            </div>
+          </li>
+          <li><span>pulse:</span>
+            <div class="mdl-textfield mdl-js-textfield">
+              <input class="mdl-textfield__input" type="text" id="pulse_input" name="pulse"  value="{{data.pulse}}">
+              <label class="mdl-textfield__label" for="pulse_input">Heart rate /min</label>
+            </div>
+          </li>
+          <li><span>BST:</span>
+            <div class="mdl-textfield mdl-js-textfield">
+              <input class="mdl-textfield__input" type="text" id="bst_input" name="bst"  value="{{data.bst}}">
+              <label class="mdl-textfield__label" for="bst_input">mg/dl</label>
+            </div>
+          </li>
+          <li><span>SpO2:</span>
+            <div class="mdl-textfield mdl-js-textfield">
+              <input class="mdl-textfield__input" type="text" id="spo2_input" name="spo2"  value="{{data.spo2}}">
+              <label class="mdl-textfield__label" for="spo2_input">O2 saturation %</label>
+            </div><span>%</span>
+          </li>
+        </ul>
+      </li><!--/vital sign-->
+      <li class="body_size"><h4>body size</h4>
+        <ul>
+          <li><span>height:</span>
+            <div class="mdl-textfield mdl-js-textfield">
+              <input class="mdl-textfield__input" type="number" id="height_input" name="height"  value="{{data.height}}">
+              <label class="mdl-textfield__label" for="height_input"></label>
+            </div><span>cm</span>
+          </li>
+          <li><span>weight:</span>
+            <div class="mdl-textfield mdl-js-textfield">
+              <input class="mdl-textfield__input" type="text" id="weight_input" name="weight" value="{{data.weight}}">
+              <label class="mdl-textfield__label" for="weight_input"></label>
+            </div><span>kg</span>
+          </li>
+        </ul>
+      </li><!--/body size-->
+      <button type="submit" form="modifyPatientInfo" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+        수정
+      </button>
+    </ul>
+  </form>
+</div>

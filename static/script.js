@@ -27,7 +27,7 @@ var makePatient = function (pObj){
   var a = document.createElement("A");
   a.classList.add("mdl-navigation__link");
   a.classList.add("smallAList");
-  a.href = "";
+  a.href = "/modify/"+mode+"/"+pObj.pid;
 
   var aInnerString = pObj["pname"] + " " + pObj["birth"] + " " + pObj["sex"];
   a.innerHTML = aInnerString;
