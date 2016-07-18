@@ -15,6 +15,10 @@ router.route('/').get(function (req, res){
   res.render('test', {data:"default modify"});
 });
 
+router.route('/chart').get(function(req, res){
+  res.render('chart_index',{mode:'chart'} );
+});
+
 router.route('/patient/:id').get(function(req, res){
   var query =
   "SELECT pid, pname, DATE_FORMAT(birth, '%Y-%m-%d') as birth , phone, sex, address, systolicBP, diastolicBP, temperature, pulse," +
