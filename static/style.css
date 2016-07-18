@@ -25,58 +25,10 @@ footer{
   clear: both;
 }
 
-.menu_list:after {
-   content: ".";
-   visibility: hidden;
-   display: block;
-   height: 0;
-   clear: both;
+.patient_list li a.smallAList{
+  height:5px;
 }
 
-.patient_list{
-  float:left;
-  background-color: #9fA1d5;
-  min-height: 500px;
-  transition: width .5s;
-  -webkit-transition: width .5s;
-  overflow: hidden;
-  width:0;
-}
-
-.patient_list.width100{
-  width:200px;
-}
-
-.patient_list button{
-  display:block;
-  margin: 0 auto;
-}
-
-.main_container{
-  float:left;
-  min-height: 500px;
-  width:600px;
-  background-color: #DDD;
-}
-
-.main_wrapper{
-  margin: 0 auto;
-  width: 440px;
-  height : 220px;
-  background: #000;
-}
-
-.main_button{
-  float:left;
-  margin:10px;
-  width:200px;
-  height:200px;
-  background: #999;
-}
-
-.reciept_button{
-  background: #987;
-}
-.medical_button{
-  background: #789;
+div.is-visible.left-menu{
+  width :400px;
 }

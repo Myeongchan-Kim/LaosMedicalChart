@@ -13,4 +13,4 @@ INSERT INTO patient (pname, birth, sex , phone, address, systolicBP, diastolicBP
 -- ------------------------
 desc patient;
 
-select * from patient;
+select * from patient order by reciept_datetime desc;

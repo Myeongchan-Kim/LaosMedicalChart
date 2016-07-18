@@ -22,22 +22,18 @@
             <a class="mdl-navigation__link" href="/modify/chart">환자차트</a>
           </nav>
         </div>
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
-                    mdl-textfield--floating-label mdl-textfield--align-right">
-          <div class="mdl-textfield__expandable-holder">
-            <input class="mdl-textfield__input" type="text" name="sample"
-                   id="fixed-header-drawer-exp">
-          </div>
-        </div>
       </div>
     </header>
-    <div class="mdl-layout__drawer">
+    <div class="mdl-layout__drawer left-menu">
       <span class="mdl-layout-title">환자목록</span>
+      <button class="mdl-button mdl-js-button mdl-button--raised" id="patientList_reloadButton">
+        새로고침
+      </button>
       <nav class="mdl-navigation">
-        <a class="mdl-navigation__link" href="">환자1</a>
-        <a class="mdl-navigation__link" href="">환자2</a>
-        <a class="mdl-navigation__link" href="">환자3</a>
-        <a class="mdl-navigation__link" href="">환자4</a>
+        <ul class="patient_list">
+        <li><a class="mdl-navigation__link smallAList" href="">환자1</a></li>
+        <li><a class="mdl-navigation__link smallAList" href="">환자2</a></li>
+        </ul>
       </nav>
     </div>
     <main class="mdl-layout__content">
