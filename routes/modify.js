@@ -17,7 +17,7 @@ router.route('/').get(function (req, res){
 
 router.route('/patient/:id').get(function(req, res){
   var query =
-  "SELECT pid, pname, DATE_FORMAT(birth, '%Y-%m-%d') as birth , phone, sex, address, systolicBP, diastolicBP, pulse," +
+  "SELECT pid, pname, DATE_FORMAT(birth, '%Y-%m-%d') as birth , phone, sex, address, systolicBP, diastolicBP, temperature, pulse," +
   " bst, spo2, height, weight "+
   "FROM patient " +
   "WHERE pid = "+ req.params.id + ";";
@@ -37,6 +37,7 @@ router.route('/patient/:id').post(function(req, res){
   if(req.body.address) query += util.format(", address = '%s'", req.body.address);
   if(req.body.sBP) query += util.format(", systolicBP = '%s'", req.body.sBP);
   if(req.body.dBP) query += util.format(", diastolicBP = '%s'", req.body.dBP);
+  if(req.body.temperature) query += util.format(", temperature = '%s'", req.body.temperature);
   if(req.body.pulse) query += util.format(", pulse = '%s'", req.body.pulse);
   if(req.body.bst) query += util.format(", bst = '%s'", req.body.bst);
   if(req.body.spo2) query += util.format(", spo2 = '%s'", req.body.spo2);
