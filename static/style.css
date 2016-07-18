@@ -5,6 +5,60 @@
   list-style:none;
 }
 
+main {
+  clear:both;
+  min-height: 500px;
+  width:1000px;
+}
+header{
+  padding:10px;
+  background-color: #ACA;
+}
+
+header ul li {
+  height:30px;
+  width: 200px;
+  float:left;
+}
+
+footer{
+  clear: both;
+}
+
+.menu_list:after {
+   content: ".";
+   visibility: hidden;
+   display: block;
+   height: 0;
+   clear: both;
+}
+
+.patient_list{
+  float:left;
+  background-color: #9fA1d5;
+  min-height: 500px;
+  transition: width .5s;
+  -webkit-transition: width .5s;
+  overflow: hidden;
+  width:0;
+}
+
+.patient_list.width100{
+  width:200px;
+}
+
+.patient_list button{
+  display:block;
+  margin: 0 auto;
+}
+
+.main_container{
+  float:left;
+  min-height: 500px;
+  width:600px;
+  background-color: #DDD;
+}
+
 .main_wrapper{
   margin: 0 auto;
   width: 440px;

@@ -67,8 +67,11 @@ router.route('/patient').post(function(req, res){
   var query = "INSERT INTO patient " + colQuery +" VALUES " + valQuery + ";"
   console.log(query);
   pool.query(query, function(err, rows, fields) {
-    if (err) throw err;
-    res.redirect('/add/patient', {patient_list: rows});
+    if (err) {
+      res.redirect({patient_info :req.body , err: err}, '/add/patient');
+    }else{
+      res.redirect('/add/patient');
+    }
   });
 });
 

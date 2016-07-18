@@ -3,28 +3,47 @@
 <head>
     <title>라오스 의료활동</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="/static/style.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="/static/script.js"></script>
+    <link rel="stylesheet" href="/static/style.css" type="text/css" />
+    <link rel="stylesheet" href="/static/material.min.css">
+    <script src="/static/script.js"></script>
+    <script src="/static/material.min.js"></script>
 </head>
 <body>
-<header>
-</header>
-<main>
-  <div class="patient_list">
-    <button>환자목록</button>
-    <ul>
-      {{#each patient_list}}
-      <li id="p{{pid}}"><a href="/modify/patient/{{pid}}">
-        <span>{{pname}}</span><span>{{birth}}</span><span>{{address}}</span>
-      </a></li>
-      {{else}}
-      {{/each}}
-    </ul>
+
+  <!-- The drawer is always open in large screens. The header is always shown,
+    even in small screens. -->
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer
+              mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <div class="mdl-layout-spacer">
+          <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="/add/patient">환자접수</a>
+            <a class="mdl-navigation__link" href="/modify/chart">환자차트</a>
+          </nav>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+                    mdl-textfield--floating-label mdl-textfield--align-right">
+          <div class="mdl-textfield__expandable-holder">
+            <input class="mdl-textfield__input" type="text" name="sample"
+                   id="fixed-header-drawer-exp">
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="mdl-layout__drawer">
+      <span class="mdl-layout-title">환자목록</span>
+      <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" href="">환자1</a>
+        <a class="mdl-navigation__link" href="">환자2</a>
+        <a class="mdl-navigation__link" href="">환자3</a>
+        <a class="mdl-navigation__link" href="">환자4</a>
+      </nav>
+    </div>
+    <main class="mdl-layout__content">
+      <div class="page-content">{{{body}}}</div>
+    </main>
   </div>
-  <div class="main_container">
-  {{{body}}}
-  </div>
-</main>
 <footer>All copyrights reserved by Paul Kim &copy; 2016 </footer>
 </body>
 </html>
