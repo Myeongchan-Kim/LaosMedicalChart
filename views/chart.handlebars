@@ -1,0 +1,103 @@
+<div class="patient_info">
+  <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+    <thead>
+    </thead>
+    <tbody>
+      <tr>
+        <td>name</td>
+        <td>{{patient.pname}}</td>
+      </tr>
+      <tr>
+        <td>age</td>
+        <td>{{patient.age}}{{patient.sex}}</td>
+      </tr>
+      <tr>
+        <td>BP</td>
+        <td>{{patient.systolicBP}}/{{patient.diastolicBP}}</td>
+      </tr>
+      <tr>
+        <td>fever</td>
+        <td>{{patient.temperature}}</td>
+      </tr>
+      <tr>
+        <td>pulse</td>
+        <td>{{patient.pulse}}</td>
+      </tr>
+      <tr>
+        <td>bst</td>
+        <td>{{patient.bst}}</td>
+      </tr>
+      <tr>
+        <td>spo2</td>
+        <td>{{patient.spo2}}</td>
+      </tr>
+      <tr>
+        <td>height</td>
+        <td>{{patient.height}}</td>
+      </tr>
+      <tr>
+        <td>weight</td>
+        <td>{{patient.weight}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="chart_container">
+  <button id="new_chart_button" data-pid="{{patient.pid}}"
+  class="mdl-button mdl-js-button mdl-button--fab mdl-button--non-colored new_chart_button">
+    +
+  </button>
+  <ul>
+    <li>
+      <div class="mdl-card mdl-shadow--3dp patient_chart">
+        <div class="chart_title">
+          <h4>Medical Assessment
+          <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+            <i class="material-icons">v</i>
+          </button>
+          </h4>
+        </div>
+        <textarea name="medical_assessment" class="mdl-textfield__input mdl-shadow--2dp assessment"></textarea>
+        <!-- <input name="medical_assessment" type="textarea" class="mdl-textfield--full-width assessment"/> -->
+        <h4>Prescription</h4>
+        <textarea name="prescription" class="mdl-textfield__input mdl-shadow--2dp prescription"></textarea>
+      </div>
+    </li>
+  </ul>
+
+  <!-- <div class="patient-chart-wide mdl-card mdl-shadow--2dp">
+    <form action="form1">
+      <div class="mdl-card__supporting-text">
+
+        <div class="mdl-textfield mdl-js-textfield">
+            <textarea class="mdl-textfield__input" type="text" rows= "3" id="sample5" >
+              2016-07-09 AM 11: 25  "허리가 아파서..."
+            </textarea>
+            <label class="mdl-textfield__label" for="sample5">Text lines...</label>
+          </div>
+      </div>
+    </form>
+    <div class="mdl-card__menu">
+      <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+        <i class="material-icons">v</i>
+      </button>
+    </div>
+  </div>
+  <div class="patient-chart-wide mdl-card mdl-shadow--2dp shrinked">
+    <form action="form2">
+      <div class="mdl-card__supporting-text">
+        <div class="mdl-textfield mdl-js-textfield">
+            <textarea class="mdl-textfield__input" type="text" rows= "3" id="sample5" >
+              2016-07-09 AM 11: 25  "허리가 아파서..."
+            </textarea>
+            <label class="mdl-textfield__label" for="sample5">Text lines...</label>
+          </div>
+      </div>
+    </form>
+    <div class="mdl-card__menu">
+      <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+        <i class="material-icons">v</i>
+      </button>
+    </div>
+  </div> -->
+</div><!-- chart container-->

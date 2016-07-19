@@ -12,10 +12,14 @@
 
   <!-- The drawer is always open in large screens. The header is always shown,
     even in small screens. -->
-  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer
-              mdl-layout--fixed-header">
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
     <header class="mdl-layout__header">
       <div class="mdl-layout__header-row">
+        {{#ifCond mode "==" "chart"}}
+        <span class="mdl-layout-title">환자 진료모드 : </span>
+        {{else}}
+        <span class="mdl-layout-title">접수 모드 : </span>
+        {{/ifCond}}
         <div class="mdl-layout-spacer">
           <nav class="mdl-navigation">
             <a class="mdl-navigation__link" href="/add/patient">환자접수</a>
@@ -24,7 +28,7 @@
         </div>
       </div>
     </header>
-    <div class="mdl-layout__drawer left-menu">
+    <div class="mdl-layout__drawer left-menu left_patient_list">
       <span class="mdl-layout-title">환자목록</span>
       <button class="mdl-button mdl-js-button mdl-button--raised" id="patientList_reloadButton">
         새로고침

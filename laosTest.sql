@@ -10,10 +10,21 @@ values(
 
 UPDATE patient SET pname = '김공실'
 WHERE pid = 1;
+UPDATE patient SET pid = 1, pname = '김명찬', birth = '1985-12-11', sex = 'M' WHERE pid =1;
 
 INSERT INTO patient (pname, birth, sex , phone, address, systolicBP, diastolicBP, pulse, height, weight) VALUES  ( '가나다', '1985-11-12', 'M' , '0100100100', '경기도의왕시내손1동', 120, 80, 60, 180, 80);
+UPDATE patient SET pid = 1, pname = '김명찬', birth = '1985-12-11', sex = 'M', phone = '1234' WHERE pid =1;
 -- ------------------------
 desc patient;
 
 select * from patient order by reciept_datetime desc;
 SELECT pid, pname, DATE_FORMAT(birth, '%Y-%m-%d') as birth , sex, address, sBP, dBP, pulse, bst, spo2, height, weight FROM patient WHERE pid = 1;
+
+show tables;
+select * from chart;
+desc chart;
+
+select (NOW() - birth) as age FROM patient where pid = 1;
+
+select DATE_FORMAT(NOW(), '%Y') - DATE_FORMAT(birth , '%Y') FROM patient where pid = 1;
+desc patient;

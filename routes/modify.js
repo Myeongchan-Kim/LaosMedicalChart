@@ -19,6 +19,17 @@ router.route('/chart').get(function(req, res){
   res.render('chart_index',{mode:'chart'} );
 });
 
+router.route('/chart/:pid').get(function(req, res){
+  var query = "SELECT pid, pname, DATE_FORMAT(NOW(), '%Y') - DATE_FORMAT(birth , '%Y') as age, sex, systolicBP, diastolicBP, temperature, pulse," +
+  " bst, spo2, height, weight FROM patient " +
+  "WHERE pid = "+ req.params.pid + ";";
+  console.log(query);
+  pool.query(query, function (err, rows, fields){
+    console.log(JSON.stringify(rows));
+    res.render('chart', {mode:'chart', patient:rows[0], cid:req.params.pid});
+  });
+});
+
 router.route('/patient/:id').get(function(req, res){
   var query =
   "SELECT pid, pname, DATE_FORMAT(birth, '%Y-%m-%d') as birth , phone, sex, address, systolicBP, diastolicBP, temperature, pulse," +
