@@ -31,25 +31,19 @@ router.route('/chart/:pid').get(function(req, res){
 });
 
 router.route('/chart/:pid/:cid').post(function(req, res){
-  var query ="";
   console.log(req.body);
-  // "UPDATE chart SET pid = " + req.params.pid;
-  // if(req.body.pname) query += util.format(", pname = '%s'",  req.body.pname);
-  // if(req.body.birth) query += util.format(", birth = '%s'", req.body.birth);
-  // if(req.body.sex) query += util.format(", sex = '%s'", req.body.sex);
-  // if(req.body.phone) query += util.format(", phone = '%s'", req.body.phone);
-  // if(req.body.address) query += util.format(", address = '%s'", req.body.address);
-  // if(req.body.sBP) query += util.format(", systolicBP = '%s'", req.body.sBP);
-  // if(req.body.dBP) query += util.format(", diastolicBP = '%s'", req.body.dBP);
-  // if(req.body.temperature) query += util.format(", temperature = '%s'", req.body.temperature);
-  // if(req.body.pulse) query += util.format(", pulse = '%s'", req.body.pulse);
-  // if(req.body.bst) query += util.format(", bst = '%s'", req.body.bst);
-  // if(req.body.spo2) query += util.format(", spo2 = '%s'", req.body.spo2);
-  // if(req.body.height) query += util.format(", height = '%s'", req.body.height);
-  // if(req.body.weight) query += util.format(", weight = '%s'", req.body.weight);
-  // query += " WHERE cid =" + req.params.cid;
-  res.type('text/plain');
-  res.send(JSON.stringify(req.query));
+  var query =""+
+  "UPDATE chart SET pid = " + req.params.pid;
+  if(req.body.medical) query += util.format(", medical_chart = '%s'",  req.body.medical);
+  if(req.body.prescription) query += util.format(", prescription = '%s'", req.body.prescription);
+  if(req.body.lab) query += util.format(", lab = '%s'", req.body.lab);
+  query += " WHERE cid =" + req.params.cid;
+  console.log(query);
+  pool.query(query, function(err, rows, fields){
+    if(err) throw err;
+    res.type('text/plain');
+    res.send(JSON.stringify(rows));
+  });
 });
 
 router.route('/patient/:id').get(function(req, res){

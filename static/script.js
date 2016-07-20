@@ -24,12 +24,12 @@ var pListAjax = {
     xhr.addEventListener("load", function(){
       callback(JSON.parse(xhr.responseText));
     });
-    var medical_ass = document.querySelector;
-    var prescription;
-    var lab_content;
-    var data = {to: "to", subject: "subject", text: "text"};
-    console.log(JSON.stringify(data));
-    xhr.send(JSON.stringify(data));
+    var medical_ass = document.querySelector("textarea.assessment").value;
+    var prescription = document.querySelector("textarea.prescription").value;
+    var lab_content = document.querySelector("textarea.lab").value;
+    var data = "medical="+medical_ass +"&prescription="+prescription+"&lab="+lab_content;
+    console.log(data);
+    xhr.send(data);
   },
 }
 
@@ -96,7 +96,9 @@ var checkSaveButton = function(target){
 };
 
 var notiSave = function(json){
-  console.log(JSON.stringify(json));
+  if(json['affectedRows'] == 1){
+    alert("저장되었습니다. ");
+  }
 }
 
 var checkExpandButton = function(target){
@@ -171,7 +173,7 @@ var makePatientChart = function(json){
   if(json.medical_chart){
     medical_textArea.value = json.medical_chart;
   }else{
-    medical_textArea.value = "*CC \n*P/I \n\n*P/EX \n\n*P/H \n\n*Imp\n"
+    medical_textArea.value = "*CC \n\n*P/I \n\n*P/EX \n\n*P/H \n\n*Imp\n"
   }
 
   var prescription_title = document.createElement("H4");
