@@ -59,6 +59,7 @@ div.chart_container ul li div.patient_chart{
 }
 
 div.chart_container ul {
+  margin-top: 50px;
   padding-left:10px;
   padding-bottom:10px;
 }
@@ -94,6 +95,13 @@ div.chart_container ul li div.patient_chart > div.save_button_div{
   position: absolute;
   top: 10px;
   left: 610px;
+  width: 100px;
+  height: 30px;
+}
+div.chart_container ul li div.patient_chart > div.delete_button_div{
+  position: absolute;
+  top: 10px;
+  left: 700px;
   width: 100px;
   height: 30px;
 }
@@ -139,7 +147,8 @@ div.chart_container button.new_chart_button{
   z-index: 10;
   position:absolute;
   margin: 10px;
-  left: 700px;
+  top:-30px;
+  left: 0px;
   font-size: 40px;
 }
 

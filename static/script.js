@@ -31,11 +31,24 @@ var pListAjax = {
     console.log(data);
     xhr.send(data);
   },
+  deletePatientChart: function(pid, cid, callback){
+
+  },
+  loadAllChart:function (pid, callback){
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "/show/chart/"+pid, true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.addEventListener("load", function(){
+      callback(JSON.parse(xhr.responseText));
+    });
+    xhr.send();
+  },
 }
 
 var makePatientList = function (json){
   var patientList = document.querySelector("ul.patient_list");
   patientList.innerHTML = "";
+  console.log(json);
   for( patientObj in json){
     var patientLi = makePatient(json[patientObj]);
     patientList.appendChild(patientLi);
@@ -77,6 +90,33 @@ var clickCallback = function(e){
   if(checkSaveButton(e.target)){
     return;
   }
+
+  if(checkDeleteButton(e.target)){
+    return;
+  }
+}
+
+var checkDeleteButton = function(target){
+  if(target.id =="chart_delete_button" ){
+    var pid = document.querySelector("div.patient_info").dataset.pid;
+    while(target !== document){
+      if(target.tagName == "LI"){
+        break;
+      }
+      target = target.parentNode;
+    }
+    var cid = target.dataset.cid;
+    var medical_ass = document.querySelector("textarea.assessment").value;
+    var prescription = document.querySelector("textarea.prescription").value;
+    var lab_content = document.querySelector("textarea.lab").value;
+    if(medical__ass + prescription + lab_content){
+      alert("내용이 있는 자료는 삭제 할 수 없습니다. ");
+      return true;
+    }
+    pListAjax.deletePatientChart(pid, cid, notiDelete);
+    return true;
+  }
+  return false;
 }
 
 var checkSaveButton = function(target){
@@ -94,6 +134,8 @@ var checkSaveButton = function(target){
   }
   return false;
 };
+
+var notiDelete = function(){};
 
 var notiSave = function(json){
   if(json['affectedRows'] == 1){
@@ -183,8 +225,9 @@ var makePatientChart = function(json){
   prescription_textArea.classList.add("mdl-textfield__input");
   prescription_textArea.classList.add("mdl-shadow--2dp");
   prescription_textArea.classList.add("prescription");
+  console.log(json.prescription);
   if(json.prescription){
-    prescription.value = json.prescription;
+    prescription_textArea.value = json.prescription;
   }
   // <div class="save_button_div">
   //   <button class="mdl-button mdl-button--raised" id="chart_save_button">
@@ -200,6 +243,14 @@ var makePatientChart = function(json){
   save_button.innerHTML = "저장";
   save_button_div.appendChild(save_button);
 
+  var delete_button_div =document.createElement("DIV");
+  delete_button_div.classList.add("delete_button_div");
+  var delete_button = document.createElement("button");
+  delete_button.classList.add("mdl-button");
+  delete_button.classList.add("mdl-button--raised");
+  delete_button.id = "chart_delete_button";
+  delete_button.innerHTML = "삭제";
+  delete_button_div.appendChild(delete_button);
   // <div class="lab_div">
   //   <h4>Lab</h4>
   //   <textarea name="lab" class="mdl-textfield__input mdl-shadow--2dp lab"></textarea>
@@ -224,6 +275,7 @@ var makePatientChart = function(json){
   patient_chart_div.classList.add("mdl-shadow--3dp");
   patient_chart_div.classList.add("shrinked");
   patient_chart_div.appendChild(save_button_div);
+  patient_chart_div.appendChild(delete_button_div);
   patient_chart_div.appendChild(lab_div);
   patient_chart_div.appendChild(chart_title_div);
   patient_chart_div.appendChild(medical_textArea);
@@ -237,10 +289,24 @@ var makePatientChart = function(json){
 
   var ul = document.querySelector("ul.chart_list");
   ul.insertBefore(li, ul.firstChild);
-  checkExpandButton(expandButton);
 }
+
+var loadAllChart = function(){
+  var ul = document.querySelector("ul.chart_list");
+  if(!ul) return;
+  var pid = document.querySelector("div.patient_info").dataset.pid;
+  pListAjax.loadAllChart(pid, makeAllchart);
+};
+
+var makeAllchart = function(json){
+  for(key in json){
+    console.log(json[key]);
+    makePatientChart(json[key]);
+  }
+};
 
 document.addEventListener("click", clickCallback);
 document.addEventListener("DOMContentLoaded", function(e){
   pListAjax.reload(makePatientList);
+  loadAllChart();
 });

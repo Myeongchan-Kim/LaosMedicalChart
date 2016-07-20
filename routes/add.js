@@ -18,14 +18,17 @@ router.route('/').get(function (req, res){
 router.route('/chart/:pid').post(function(req, res){
   var query = util.format("call insert_chart(%d);", req.params.pid);
   pool.query(query , function(err, rows, fields){
-    if (err) throw err;
+    if (err) {
+      console.log(query);
+      console.log(err);
+    }
     res.type('text/plain');
     res.send(JSON.stringify(rows[0][0]));
   });
 });
 
 router.route('/patient').get(function(req, res){
-  res.render('newPatient', {data:"patient add"});
+  res.render('newPatient', {data:"patient add", mode:"patient"});
 });
 
 router.route('/patient').post(function(req, res){
@@ -39,45 +42,46 @@ router.route('/patient').post(function(req, res){
     colQuery += ", address";
     valQuery += util.format(", '%s'", req.body.address);
   }
-  if(req.body.sBP){
+  if(Number(req.body.sBP)){
     colQuery += ", systolicBP";
-    valQuery += util.format(", %s", req.body.sBP);
+    valQuery += util.format(", %s", parseInt(req.body.sBP));
   }
-  if(req.body.dBP){
+  if(Number(req.body.dBP)){
     colQuery += ", diastolicBP";
-    valQuery += util.format(", %s", req.body.dBP);
+    valQuery += util.format(", %s", parseInt(req.body.dBP));
   }
-  if(req.body.pulse){
+  if(Number(req.body.pulse)){
     colQuery += ", pulse";
-    valQuery += util.format(", %s", req.body.pulse);
+    valQuery += util.format(", %s", parseInt(req.body.pulse));
   }
-  if(req.body.temperature){
+  if(Number(req.body.temperature)){
     colQuery += ", temperature";
-    valQuery += util.format(", %s", req.body.temperature);
+    valQuery += util.format(", %s", parseFloat(req.body.temperature));
   }
-  if(req.body.bst){
+  if(Number(req.body.bst)){
     colQuery += ", bst";
-    valQuery += util.format(", %s", req.body.bst);
+    valQuery += util.format(", %s", parseInt(req.body.bst));
   }
-  if(req.body.height){
+  if(Number(req.body.height)){
     colQuery += ", height";
-    valQuery += util.format(", %s", req.body.height);
+    valQuery += util.format(", %s", parseFloat(req.body.height));
   }
-  if(req.body.weight){
+  if(Number(req.body.weight)){
     colQuery += ", weight";
-    valQuery += util.format(", %s", req.body.weight);
+    valQuery += util.format(", %s", parseFloat(req.body.weight));
   }
-  if(req.body.spo2){
+  if(Number(req.body.spo2)){
     colQuery += ", spo2";
     valQuery += util.format(", %s", req.body.spo2);
   }
   colQuery += ")";
   valQuery += ")";
   var query = "INSERT INTO patient " + colQuery +" VALUES " + valQuery + ";"
-  console.log(query);
   pool.query(query, function(err, rows, fields) {
     if (err) {
-      res.render('/add/patient', {patient_info :req.body , err: err});
+      console.log(query);
+      console.log(err);
+      res.redirect('/add/patient');
     }else{
       res.redirect('/');
     }

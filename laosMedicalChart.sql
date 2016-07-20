@@ -43,6 +43,7 @@ CREATE TABLE IF NOT EXISTS `laos`.`chart` (
   `lab` TEXT NULL DEFAULT NULL,
   `memo` TEXT NULL DEFAULT NULL,
   `createTime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `complete` boolean NULL DEFAULT NULL,
   PRIMARY KEY (`cid`, `pid`),
   INDEX `fk_chart_patient_idx` (`pid` ASC),
   CONSTRAINT `fk_chart_patient`

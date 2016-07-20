@@ -23,7 +23,7 @@ router.route('/chart/:pid').get(function(req, res){
   var query = "SELECT pid, pname, DATE_FORMAT(NOW(), '%Y') - DATE_FORMAT(birth , '%Y') as age, sex, systolicBP, diastolicBP, temperature, pulse," +
   " bst, spo2, height, weight FROM patient " +
   "WHERE pid = "+ req.params.pid + ";";
-  console.log(query);
+  //console.log(query);
   pool.query(query, function (err, rows, fields){
     console.log(JSON.stringify(rows));
     res.render('chart', {mode:'chart', patient:rows[0], cid:req.params.pid});
@@ -31,7 +31,7 @@ router.route('/chart/:pid').get(function(req, res){
 });
 
 router.route('/chart/:pid/:cid').post(function(req, res){
-  console.log(req.body);
+  //console.log(req.body);
   var query =""+
   "UPDATE chart SET pid = " + req.params.pid;
   if(req.body.medical) query += util.format(", medical_chart = '%s'",  req.body.medical);
@@ -40,7 +40,10 @@ router.route('/chart/:pid/:cid').post(function(req, res){
   query += " WHERE cid =" + req.params.cid;
   console.log(query);
   pool.query(query, function(err, rows, fields){
-    if(err) throw err;
+    if(err) {
+      console.log(query);
+      console.log(err);
+    }
     res.type('text/plain');
     res.send(JSON.stringify(rows));
   });

@@ -34,3 +34,6 @@ from chart;
 
 select DATE_FORMAT(NOW(), '%Y') - DATE_FORMAT(birth , '%Y') FROM patient where pid = 1;
 desc patient;
+select cid, pid, medical_chart, prescription, oriental_chart, oriental_prescription, lab, memo
+	, DATE_FORMAT(createTime, '%Y-%m-%d %h:%i %p') as createTime 
+    from chart where pid = 4 order by createTime;
