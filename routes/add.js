@@ -15,6 +15,15 @@ router.route('/').get(function (req, res){
   res.render('test', {data:"default delete"});
 });
 
+router.route('/chart/:pid').post(function(req, res){
+  var query = util.format("call insert_chart(%d);", req.params.pid);
+  pool.query(query , function(err, rows, fields){
+    if (err) throw err;
+    res.type('text/plain');
+    res.send(JSON.stringify(rows[0][0]));
+  });
+});
+
 router.route('/patient').get(function(req, res){
   res.render('newPatient', {data:"patient add"});
 });

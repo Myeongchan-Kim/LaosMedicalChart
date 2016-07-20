@@ -32,7 +32,6 @@ var handlebars = require('express-handlebars')
 
 var Handlebars = require("handlebars");
 
-
 var bodyparser = require('body-parser').urlencoded({extended:true}); //form 평문전달
 
 app.use(bodyparser);

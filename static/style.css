@@ -45,15 +45,17 @@ div.patient_info {
 div.chart_container{
   position:absolute;
   margin-left: 190px;
-  transition: 1s;
-  -webkit-transiton: 1s;
   margin-top:20px;
 }
 
 div.chart_container ul li div.patient_chart{
   padding-left: 10px;
   padding-bottom: 10px;
+  margin-bottom: 10px;
   width:800px;
+  max-height: 550px;
+  height:550px;
+  overflow: hidden;
 }
 
 div.chart_container ul {
@@ -61,14 +63,68 @@ div.chart_container ul {
   padding-bottom:10px;
 }
 
+div.chart_container ul li div.patient_chart{
+  -webkit-transition: width 1s, height 1s, min-height 1s, max-height 1s;
+  transition: width 1s, height 1s, min-height 1s, max-height 1s;
+}
+
 div.chart_container ul li div.patient_chart h4{
   margin-top : 5px;
   margin-bottom: 1px;
 }
 
+div.chart_container ul li div.patient_chart h4 span{
+  margin-left: 10px;
+}
+
+div.chart_container ul li div.patient_chart h4 button{
+  background-color: #DDD;
+  margin-left: 50px;
+}
+
+div.chart_container ul li div.patient_chart > div.lab_div{
+  position: absolute;
+  top: 50px;
+  left: 600px;
+  width: 200px;
+  height: 450px;
+}
+
+div.chart_container ul li div.patient_chart > div.save_button_div{
+  position: absolute;
+  top: 10px;
+  left: 610px;
+  width: 100px;
+  height: 30px;
+}
+
+div.chart_container ul li div.patient_chart > div.lab_div textarea{
+  width: 170px;
+  height: 400px;
+}
+
+div.chart_container ul li div.patient_chart.shrinked {
+  min-height:80px;
+  max-height:80px;
+  height:80px;
+  width: 600px;
+}
+
+div.chart_container ul li div.patient_chart.shrinked textarea{
+  display: none;
+}
+
+div.chart_container ul li div.patient_chart.shrinked > div.lab_div{
+  display: none;
+}
+
+div.chart_container ul li div.patient_chart.shrinked > h4{
+  display: none;
+}
+
 div.chart_container ul li div.patient_chart textarea{
   padding: 10px;
-  width:600px;
+  width:550px;
 }
 
 div.chart_container ul li div.patient_chart textarea.assessment{
@@ -91,16 +147,4 @@ div.chart_container button.new_chart_button{
   min-height:80px;
   height:400px;
   width: 700px;
-}
-
-.patient-chart-wide.mdl-card.shrinked {
-  min-height:80px;
-  height:80px;
-  width: 700px;
-}
-.demo-card-wide > .mdl-card__title {
-  color: #fff;
-}
-.demo-card-wide > .mdl-card__menu {
-  color: #AAA;
 }

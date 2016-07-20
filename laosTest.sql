@@ -22,9 +22,15 @@ SELECT pid, pname, DATE_FORMAT(birth, '%Y-%m-%d') as birth , sex, address, sBP, 
 
 show tables;
 select * from chart;
+drop table chart;
 desc chart;
 
+call insert_chart(2);
+
 select (NOW() - birth) as age FROM patient where pid = 1;
+
+select cid, pid, medical_chart, prescription, oriental_chart, oriental_prescription, lab, memo, DATE_FORMAT(createTime, '%Y-%m-%d %h:%i %p') as createTime
+from chart;
 
 select DATE_FORMAT(NOW(), '%Y') - DATE_FORMAT(birth , '%Y') FROM patient where pid = 1;
 desc patient;

@@ -60,6 +60,21 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 
+drop procedure if exists insert_chart;
+delimiter #
+create procedure insert_chart(
+in p_id INT(11)
+)
+begin
+	declare c_id INT(11) default 0;
+	insert into chart (pid) values (p_id);
+	set c_id = last_insert_id();
+
+	select cid, pid, medical_chart, prescription, oriental_chart, oriental_prescription, lab, memo, DATE_FORMAT(createTime, '%Y-%m-%d %h:%i %p') as createTime
+    from chart where cid = c_id AND pid = p_id;
+end#
+delimiter ;
+
 -- ------------------------------------------
 
 USE LAOS;

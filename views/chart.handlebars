@@ -1,4 +1,4 @@
-<div class="patient_info">
+<div class="patient_info" data-pid={{patient.pid}}>
   <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
     <thead>
     </thead>
@@ -47,12 +47,22 @@
   class="mdl-button mdl-js-button mdl-button--fab mdl-button--non-colored new_chart_button">
     +
   </button>
-  <ul>
+  <ul class="chart_list">
     <li>
-      <div class="mdl-card mdl-shadow--3dp patient_chart">
+      <div class="mdl-card mdl-shadow--3dp patient_chart shrinked">
+        <div class="save_button_div">
+          <button class="mdl-button mdl-button--raised" id="chart_save_button">
+            저장
+          </button>
+        </div>
+        <div class="lab_div">
+          <h4>Lab</h4>
+          <textarea name="lab" class="mdl-textfield__input mdl-shadow--2dp lab"></textarea>
+        </div>
         <div class="chart_title">
           <h4>Medical Assessment
-          <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+            <span>2016-04-06 11:00</span>
+            <button id="expandButton" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
             <i class="material-icons">v</i>
           </button>
           </h4>
