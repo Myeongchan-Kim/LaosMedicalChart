@@ -33,7 +33,18 @@ router.route('/patient').get(function(req, res){
 
 router.route('/patient').post(function(req, res){
   var colQuery = "(pname, birth, sex ";
-  var valQuery = util.format(" ( '%s', '%s', '%s' ", req.body.pname, req.body.birth, req.body.sex);
+  var pname = req.body.pname;
+  var birth = req.body.birth;
+  if( Number(birth) != NaN){
+    var year = parseInt(Number(birth)/10000);
+    var monthDay = parseInt(Number(birth)) % 10000;
+    var month = parseInt(monthDay / 100);
+    var day = monthDay % 100;
+    var birth = ""+year +"-" + month + "-" + day;
+    console.log(birth);
+  }
+  var sex = req.body.sex;
+  var valQuery = util.format(" ( '%s', '%s', '%s' ", pname, birth, sex);
   if(req.body.phone){
     colQuery += ", phone";
     valQuery += util.format(", '%s'", req.body.phone);
