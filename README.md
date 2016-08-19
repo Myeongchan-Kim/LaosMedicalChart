@@ -8,6 +8,8 @@ A mini medical chart for voluteering
 ![환자접수](https://raw.githubusercontent.com/Paul-Kim/LaosMedicalChart/master/screenshot/screenshot1.PNG)
 ![진료차트](https://raw.githubusercontent.com/Paul-Kim/LaosMedicalChart/master/screenshot/screenshot2.PNG)
 
+![신체진찰](https://s-media-cache-ak0.pinimg.com/564x/0a/a4/a7/0aa4a70c9353bcd27523b0b2710750bd.jpg)  
+  
 ## Matrial
 Sever : Nodejs, MySQL  
 template : handlebars  
