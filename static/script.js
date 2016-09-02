@@ -48,7 +48,7 @@ var pListAjax = {
 var makePatientList = function (json){
   var patientList = document.querySelector("ul.patient_list");
   patientList.innerHTML = "";
-  console.log(json);
+  //console.log(json);
   for( patientObj in json){
     var patientLi = makePatient(json[patientObj]);
     patientList.appendChild(patientLi);
@@ -72,13 +72,15 @@ var makePatient = function (pObj){
 }
 
 var clickCallback = function(e){
+
   if(e.target.id == "patientList_reloadButton"){
     pListAjax.reload(makePatientList);
     return;
   }
 
-  if(e.target.id === "new_chart_button"){
+  if(e.target.parentNode.id == "new_chart_button"){
     var pid = document.querySelector("div.patient_info").dataset.pid;
+    console.log(e.target);
     pListAjax.makeNewPatientChart(pid, makePatientChart);
     return;
   }
@@ -300,7 +302,7 @@ var loadAllChart = function(){
 
 var makeAllchart = function(json){
   for(key in json){
-    console.log(json[key]);
+    //console.log(json[key]);
     makePatientChart(json[key]);
   }
 };
