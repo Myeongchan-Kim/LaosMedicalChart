@@ -26,10 +26,13 @@ footer{
 }
 
 canvas{
-  width:6ss00px;
+  width:600px;
   height:400px;
 }
-
+svg{
+  width:600px;
+  height:400px;
+}
 dialog{
   margin: 0 auto;
 }
@@ -61,6 +64,12 @@ div.chart_container{
   position:absolute;
   margin-left: 190px;
   margin-top:20px;
+}
+
+div.chart_container img#phEx_img_body{
+  width : 600px;
+  height : 400px;
+  display: none;
 }
 
 div.chart_container ul li div.patient_chart{

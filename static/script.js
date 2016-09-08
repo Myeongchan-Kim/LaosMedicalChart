@@ -229,7 +229,6 @@ var makePatientChart = function(json){
     `+ (json.prescription ? json.prescription : "") +`</textarea>
     </div>
     <dialog class="mdl-dialog phEx_dialog">
-      <canvas></canvas>
       <button type="button" id="phEx_dialog_close" class="mdl-button">닫기</button>
     </dialog>
 `
@@ -241,6 +240,14 @@ var makePatientChart = function(json){
 
   var ul = document.querySelector("ul.chart_list");
   ul.insertBefore(li, ul.firstChild);
+
+  var svg = d3.select("dialog").insert("svg",":first-child");
+  var g = svg.append("g");
+
+  var img = g.append("svg:image")
+      .attr("xlink:href", "/static/body_image.jpg")
+      .attr("width", 600)
+      .attr("height", 400);
 }
 
 var loadAllChart = function(){
