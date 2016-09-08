@@ -242,12 +242,79 @@ var makePatientChart = function(json){
   ul.insertBefore(li, ul.firstChild);
 
   var svg = d3.select("dialog").insert("svg",":first-child");
+  svg.attr("xmlns", "http://www.w3.org/2000/svg")
   var g = svg.append("g");
 
   var img = g.append("svg:image")
       .attr("xlink:href", "/static/body_image.jpg")
       .attr("width", 600)
-      .attr("height", 400);
+      .attr("height", 400)
+      .on("mousedown", clickBody)
+      .on("mouseup", mouseupBody);
+}
+var tagList = [];
+var clickBody = function(){
+  var m = d3.mouse(this);
+  var obj = {
+    'x1' : m[0],
+    'y1' : m[1],
+    'x2' : m[0],
+    'y2' : m[1],
+    'line' : {},
+    'input' : {},
+  };
+  tagList.push(obj);
+  var svg = d3.select("dialog svg");
+  var elementEnter = svg.selectAll("circle").data(tagList).enter();
+
+  elementEnter.append('circle')
+    .attr("cx", function(d, i){return tagList[i]['x1'];})
+    .attr("cy", function(d, i){return tagList[i]['y1'];})
+    .attr("r", "5px")
+    .attr("fill", function (d, i){
+      return "rgba("+Math.floor(Math.random()*255)+","
+      +Math.floor(Math.random()*255)+","
+      +Math.floor(Math.random()*255)+","
+      +0.6+")";
+    })
+    .attr("stroke", "orange")
+    .attr("stroke-width", "2px");
+
+  svg
+  .on("mousemove", makeline);
+
+  obj['line'] = elementEnter.append("line")
+    .attr("x1", function(d, i){return tagList[i]['x1'];})
+    .attr("y1", function(d, i){return tagList[i]['y1'];})
+    .attr("x2", function(d, i){return tagList[i]['x2'];})
+    .attr("y2", function(d, i){return tagList[i]['y2'];})
+    .attr("stroke", "black")
+    .attr("stroke-width", "2px");
+}
+
+var makeline = function(){
+  var m = d3.mouse(this);
+  var svg = d3.select("dialog svg");
+  var line = tagList[tagList.length - 1]['line'];
+  line
+    .attr('x2', function(d, i) {return m[0];})
+    .attr('y2', function(d, i){return m[1];});
+}
+
+var mouseupBody = function(){
+  var m = d3.mouse(this);
+  var svg = d3.select("dialog svg");
+  svg.on("mousemove", null);
+  //console.log(svg);
+  var fo = svg.append("foreignObject")
+    .attr("width", 50)
+    .attr("height", 20)
+    .attr("x", m[0])
+    .attr('y', m[1]-10)
+    .append("xhtml:body")
+    .on('mousedown', function(){d3.event.stopPropagation();});
+
+  fo.append("input");
 }
 
 var loadAllChart = function(){
