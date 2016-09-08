@@ -111,7 +111,8 @@ var checkDeleteButton = function(target){
     var medical_ass = document.querySelector("textarea.assessment").value;
     var prescription = document.querySelector("textarea.prescription").value;
     var lab_content = document.querySelector("textarea.lab").value;
-    if(medical__ass + prescription + lab_content){
+    console.log();
+    if(medical_ass + prescription + lab_content){
       alert("내용이 있는 자료는 삭제 할 수 없습니다. ");
       return true;
     }
@@ -131,6 +132,8 @@ var checkSaveButton = function(target){
       target = target.parentNode;
     }
     var cid = target.dataset.cid;
+    console.log("pid:"+ pid);
+    console.log("cid"+ cid);
     pListAjax.savePatientChart(pid, cid, notiSave);
     return true;
   }
@@ -165,128 +168,41 @@ var checkExpandButton = function(target){
 }
 
 var makePatientChart = function(json){
-
-  // <li>
-  //   <div class="mdl-card mdl-shadow--3dp patient_chart">
-  // <div class="lab_div">
-  //   <h4>Lab</h4>
-  //   <textarea name="lab" class="mdl-textfield__input mdl-shadow--2dp lab"></textarea>
-  // </div>
-  //     <div class="chart_title">
-  //       <h4>Medical Assessment
-  //       <button id="expandButton" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-  //         <i id="cid%d" class="material-icons">v</i>
-  //       </button>
-  //       </h4>
-  //     </div>
-  //     <textarea name="medical_assessment" class="mdl-textfield__input mdl-shadow--2dp assessment"></textarea>
-  //     <h4>Prescription</h4>
-  //     <textarea name="prescription" class="mdl-textfield__input mdl-shadow--2dp prescription"></textarea>
-  //   </div>
-  // </li>
-
-  var i = document.createElement("I");
-  i.classList.add("material-icons");
-  i.innerHTML = "v";
-
-  var expandButton = document.createElement("BUTTON");
-  expandButton.classList.add("mdl-button");
-  expandButton.classList.add("mdl-button--icon");
-  expandButton.classList.add("mdl-js-button");
-  expandButton.classList.add("mdl-js-ripple-effect");
-  expandButton.id = "expandButton";
-  expandButton.appendChild(i);
-
-  var timestamp = document.createElement("SPAN");
-  timestamp.innerHTML = json.createTime;
-
-  var title = document.createElement("H4");
-  title.innerHTML = "Medical Assessment ";
-  title.appendChild(timestamp);
-  title.appendChild(expandButton);
-
-  var chart_title_div = document.createElement("DIV");
-  chart_title_div.classList.add("chart_title");
-  chart_title_div.appendChild(title);
-
-  var medical_textArea = document.createElement("TEXTAREA");
-  medical_textArea.name = "medical_assessment";
-  medical_textArea.classList.add("mdl-textfield__input");
-  medical_textArea.classList.add("mdl-shadow--2dp");
-  medical_textArea.classList.add("assessment");
-  if(json.medical_chart){
-    medical_textArea.value = json.medical_chart;
-  }else{
-    medical_textArea.value = "*CC \n\n*P/I \n\n*P/EX \n\n*P/H \n\n*Imp\n"
-  }
-
-  var prescription_title = document.createElement("H4");
-  prescription_title.innerHTML = "prescription";
-  var prescription_textArea = document.createElement("TEXTAREA");
-  prescription_textArea.name = "medical_assessment";
-  prescription_textArea.classList.add("mdl-textfield__input");
-  prescription_textArea.classList.add("mdl-shadow--2dp");
-  prescription_textArea.classList.add("prescription");
-  console.log(json.prescription);
-  if(json.prescription){
-    prescription_textArea.value = json.prescription;
-  }
-  // <div class="save_button_div">
-  //   <button class="mdl-button mdl-button--raised" id="chart_save_button">
-  //     저장
-  //   </button>
-  // </div>
-  var save_button_div = document.createElement("DIV");
-  save_button_div.classList.add("save_button_div");
-  var save_button = document.createElement("button");
-  save_button.classList.add("mdl-button");
-  save_button.classList.add("mdl-button--raised");
-  save_button.id = "chart_save_button";
-  save_button.innerHTML = "저장";
-  save_button_div.appendChild(save_button);
-
-  var delete_button_div =document.createElement("DIV");
-  delete_button_div.classList.add("delete_button_div");
-  var delete_button = document.createElement("button");
-  delete_button.classList.add("mdl-button");
-  delete_button.classList.add("mdl-button--raised");
-  delete_button.id = "chart_delete_button";
-  delete_button.innerHTML = "삭제";
-  delete_button_div.appendChild(delete_button);
-  // <div class="lab_div">
-  //   <h4>Lab</h4>
-  //   <textarea name="lab" class="mdl-textfield__input mdl-shadow--2dp lab"></textarea>
-  // </div>
-  var lab_div = document.createElement("DIV");
-  lab_div.classList.add("lab_div");
-  var lab_head = document.createElement("H4");
-  lab_head.innerHTML = "Lab";
-  var lab_textarea = document.createElement("TEXTAREA");
-  lab_textarea.classList.add("mdl-textfield__input");
-  lab_textarea.classList.add("mdl-shadow--2dp");
-  lab_textarea.classList.add("lab");
-  if(json.lab){
-    lab_textarea.value = json.lab;
-  }
-  lab_div.appendChild(lab_head);
-  lab_div.appendChild(lab_textarea);
-
-  var patient_chart_div = document.createElement("DIV");
-  patient_chart_div.classList.add("mdl-card");
-  patient_chart_div.classList.add("patient_chart");
-  patient_chart_div.classList.add("mdl-shadow--3dp");
-  patient_chart_div.classList.add("shrinked");
-  patient_chart_div.appendChild(save_button_div);
-  patient_chart_div.appendChild(delete_button_div);
-  patient_chart_div.appendChild(lab_div);
-  patient_chart_div.appendChild(chart_title_div);
-  patient_chart_div.appendChild(medical_textArea);
-  patient_chart_div.appendChild(prescription_title);
-  patient_chart_div.appendChild(prescription_textArea);
-
+  var innertext =
+`
+    <div class='mdl-card mdl-shadow--3dp patient_chart shrinked'>
+    <div class='save_button_div'>
+      <button id='chart_save_button' class='mdl-button mdl-button--raised'>저장</button>
+    </div>
+    <div class='delete_button_div'>
+      <button id='chart_delete_button' class='mdl-button mdl-button--raised'>삭제</button>
+    </div>
+    <div class='pEx_div'>
+      <button id='pEx_button' class='mdl-button mdl-button--raised'>P/Ex</button>
+    </div>
+    <div class='lab_div'>
+      <h4>Lab</h4>
+      <textarea name='lab' class='mdl-textfield__input mdl-shadow--2dp lab'>
+      `+ (json.lab ? json.lab : "") +`</textarea>
+    </div>
+    <div class='chart_title'>
+      <h4>Medical Assessment<span>`+ json.createTime+`</span>
+      <button id='expandButton' class='mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect'>
+        <i id='cid` + json.cid + `' class='material-icons'>v</i>
+      </button>
+      </h4>
+    </div>
+    <textarea name='medical_assessment' class='mdl-textfield__input mdl-shadow--2dp assessment'>
+    `+ (json.medical_chart ? json.medical_chart : "") +`</textarea>
+      <h4>Prescription</h4>
+    <textarea name='prescription' class='mdl-textfield__input mdl-shadow--2dp prescription'>
+    `+ (json.prescription ? json.prescription : "") +`</textarea>
+    </div>
+`
   var li = document.createElement("LI");
   li.dataset.cid = json.cid;
-  li.appendChild(patient_chart_div);
+  li.innerHTML = innertext;
+  //li.appendChild(patient_chart_div);
   //console.log(li);
 
   var ul = document.querySelector("ul.chart_list");

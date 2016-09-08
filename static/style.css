@@ -29,8 +29,10 @@ div.left_patient_list ul.patient_list{
   padding-left: 10px;
 }
 
-.patient_list li a.smallAList{
-  height:5px;
+div.left_patient_list ul.patient_list li a.smallAList{
+  padding-left:20px;
+  padding-right:20px;
+  height:10px;
 }
 
 div.is-visible.left-menu{
@@ -85,10 +87,10 @@ div.chart_container ul li div.patient_chart h4 button{
 
 div.chart_container ul li div.patient_chart > div.lab_div{
   position: absolute;
-  top: 50px;
+  top: 120px;
   left: 600px;
   width: 200px;
-  height: 450px;
+  height: 350px;
 }
 
 div.chart_container ul li div.patient_chart > div.save_button_div{
@@ -105,10 +107,17 @@ div.chart_container ul li div.patient_chart > div.delete_button_div{
   width: 100px;
   height: 30px;
 }
+div.chart_container ul li div.patient_chart > div.pEx_div{
+  position: absolute;
+  top: 70px;
+  left: 610px;
+  width: 150px;
+  height: 30px;
+}
 
 div.chart_container ul li div.patient_chart > div.lab_div textarea{
   width: 170px;
-  height: 400px;
+  height: 340px;
 }
 
 div.chart_container ul li div.patient_chart.shrinked {
