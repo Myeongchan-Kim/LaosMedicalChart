@@ -96,6 +96,36 @@ var clickCallback = function(e){
   if(checkDeleteButton(e.target)){
     return;
   }
+
+  if(checkPhExButton(e.target)){
+    return;
+  }
+
+  if(checkPhexClose(e.target)){
+    return;
+  }
+}
+
+var checkPhexClose = function(target){
+  if(target.id == "phEx_dialog_close"){
+    var dialog = document.querySelector('dialog');
+    dialog.close();
+    return true;
+  }
+  return false;
+}
+
+var checkPhExButton = function(target){
+  if(target.id == "pEx_button"){
+    var dialog = document.querySelector('dialog');
+    if (! dialog.showModal) {
+      dialogPolyfill.registerDialog(dialog);
+    }
+    dialog.showModal();
+    return true;
+  }
+  else
+    return false;
 }
 
 var checkDeleteButton = function(target){
@@ -198,6 +228,10 @@ var makePatientChart = function(json){
     <textarea name='prescription' class='mdl-textfield__input mdl-shadow--2dp prescription'>
     `+ (json.prescription ? json.prescription : "") +`</textarea>
     </div>
+    <dialog class="mdl-dialog phEx_dialog">
+      <canvas></canvas>
+      <button type="button" id="phEx_dialog_close" class="mdl-button">닫기</button>
+    </dialog>
 `
   var li = document.createElement("LI");
   li.dataset.cid = json.cid;

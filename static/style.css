@@ -25,6 +25,19 @@ footer{
   clear: both;
 }
 
+canvas{
+  width:6ss00px;
+  height:400px;
+}
+
+dialog{
+  margin: 0 auto;
+}
+
+dialog.phEx_dialog{
+  width:600px;
+}
+
 div.left_patient_list ul.patient_list{
   padding-left: 10px;
 }
