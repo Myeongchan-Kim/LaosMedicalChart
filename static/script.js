@@ -242,15 +242,16 @@ var makePatientChart = function(json){
   ul.insertBefore(li, ul.firstChild);
 
   var svg = d3.select("dialog").insert("svg",":first-child");
-  svg.attr("xmlns", "http://www.w3.org/2000/svg")
+  svg
+    .attr("xmlns", "http://www.w3.org/2000/svg")
+    .on("mousedown", clickBody)
+    .on("mouseup", mouseupBody);
   var g = svg.append("g");
 
   var img = g.append("svg:image")
       .attr("xlink:href", "/static/body_image.jpg")
       .attr("width", 600)
-      .attr("height", 400)
-      .on("mousedown", clickBody)
-      .on("mouseup", mouseupBody);
+      .attr("height", 400);
 }
 var tagList = [];
 var clickBody = function(){
@@ -305,17 +306,18 @@ var mouseupBody = function(){
   var m = d3.mouse(this);
   var svg = d3.select("dialog svg");
   svg.on("mousemove", null);
-  //console.log(svg);
   var fo = svg.append("foreignObject")
-    .attr("width", 50)
+    .attr("width", 65)
     .attr("height", 20)
     .attr("x", m[0])
     .attr('y', m[1]-10)
     .append("xhtml:body")
-    .on('mousedown', function(){d3.event.stopPropagation();});
+    .on('mousedown', function(){d3.event.stopPropagation();})
+    .on('mouseup', function(){d3.event.stopPropagation();});
 
   fo.append("textarea")
-    .attr("class" , "mdl-textfield__input mdl-shadow--2dp phEx_label");
+    .attr("class" , "mdl-textfield__input mdl-shadow--2dp phEx_label")
+    ;
 }
 
 var loadAllChart = function(){
