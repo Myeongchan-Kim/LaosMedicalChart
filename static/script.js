@@ -297,20 +297,32 @@ var makeline = function(){
   var m = d3.mouse(this);
   var svg = d3.select("dialog svg");
   var line = tagList[tagList.length - 1]['line'];
+  tagList[tagList.length - 1]['x2'] = m[0];
+  tagList[tagList.length - 1]['y2'] = m[1];
   line
     .attr('x2', function(d, i) {return m[0];})
-    .attr('y2', function(d, i){return m[1];});
+    .attr('y2', function(d, i) {return m[1];});
 }
 
 var mouseupBody = function(){
   var m = d3.mouse(this);
   var svg = d3.select("dialog svg");
   svg.on("mousemove", null);
+  var foWidth = 100;
+  var foHeight = 40;
   var fo = svg.append("foreignObject")
-    .attr("width", 65)
-    .attr("height", 20)
-    .attr("x", m[0])
-    .attr('y', m[1]-10)
+    .attr("width", foWidth)
+    .attr("height", foHeight)
+    .attr("x", function(d){
+      var thisObj = tagList[tagList.length-1];
+      if( (thisObj['x2']-thisObj['x1']) > 0)
+        return m[0];
+      else
+        return m[0]-foWidth;
+    })
+    .attr('y', function(d,i){
+      return m[1]-foHeight/2;
+    })
     .append("xhtml:body")
     .on('mousedown', function(){d3.event.stopPropagation();})
     .on('mouseup', function(){d3.event.stopPropagation();});
