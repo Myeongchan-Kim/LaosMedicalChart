@@ -314,7 +314,8 @@ var mouseupBody = function(){
     .append("xhtml:body")
     .on('mousedown', function(){d3.event.stopPropagation();});
 
-  fo.append("input");
+  fo.append("textarea")
+    .attr("class" , "mdl-textfield__input mdl-shadow--2dp phEx_label");
 }
 
 var loadAllChart = function(){

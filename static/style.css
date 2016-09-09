@@ -33,6 +33,13 @@ svg{
   width:600px;
   height:400px;
 }
+
+dialog textarea.phEx_label{
+  font-size: 10px;
+  width:100px;
+  height:40px;
+}
+
 dialog{
   margin: 0 auto;
 }
