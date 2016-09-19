@@ -1,0 +1,37 @@
+G44 TENSION headache
+G56 팔의 neuropathy.
+
+K21 GERD
+K58 IBS
+K29 gastritis
+K59 변비
+
+R07 chest pain
+R51 두통
+
+M519 상세불명의 추간판 장애
+M545 Low back pain
+M15 다발 관절증
+M791 근통, 다발부분
+
+L03 cellulitis
+
+I10	고혈압	High blood pressure
+E11 2형 당뇨병
+E14 상세불명의 당뇨병
+
+
+J00 감기
+J304 혈관성, 알레르기성 비염
+J31 만성비염, 비인두염
+J45 asthma
+
+
+T784 상세불명의 알레르기
+
+B19 상세불명의 바이러스 간염
+
+
+H52 시력의 굴절이상
+
+D50 철 결핍성 빈혈
